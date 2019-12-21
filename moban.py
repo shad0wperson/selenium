@@ -18,9 +18,12 @@ class LagouSpider(object):
         #禁止弹窗，妨碍点击操作
         self.prefs = {'profile.default_content_setting_values':{'notifications':2}}
         self.chrome_options.add_experimental_option('prefs',self.prefs)
-        # #无界面展示
+        #无界面展示
         self.chrome_options.add_argument('--headless')
         self.chrome_options.set_headless(headless=True)
+        #开启无图模式
+        self.prefs = {'profile.default_content_setting_values':{'images':2}}
+        self.chrome_options.add_experimental_option('prefs',self.prefs)
         self.driver = webdriver.Chrome(executable_path=LagouSpider.driver_path,options=self.chrome_options)
         self.url = 'http://www.lagou.com/jobs/list_python/p-city_198?&cl=false&fromSearch=true&labelWords=&suginput='
         self.positions = []
